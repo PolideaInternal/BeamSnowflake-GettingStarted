@@ -1,0 +1,39 @@
+plugins {
+    id 'java'
+}
+
+group 'com.polidea'
+version '1.0'
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+task run(type:JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+
+    main = project.hasProperty("mainClass") ? project.getProperty("mainClass") : "streaming.TaxiRidesExample"
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    compile files('beam-sdks-java-io-snowflake-2.23.0-SNAPSHOT.jar')
+    compile group: 'org.apache.beam', name: 'beam-sdks-java-core', version: '2.22.0'
+    compile group: 'org.apache.beam', name: 'beam-runners-direct-java', version: '2.22.0'
+    compile group: 'org.apache.beam', name: 'beam-runners-google-cloud-dataflow-java', version: '2.22.0'
+}
+
+task execute (type:JavaExec) {
+    main = System.getProperty("mainClass")
+    classpath = sourceSets.main.runtimeClasspath
+    systemProperties System.getProperties()
+    if (System.getProperty("exec.args") != null) {
+        args System.getProperty("exec.args").split()
+    }
+}
+
