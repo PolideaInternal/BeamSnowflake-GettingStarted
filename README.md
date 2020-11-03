@@ -1,3 +1,2 @@
-## BeamSnowflake-GettingStarted
-This repository contains example of using [Snowflake](https://www.snowflake.com/) with [Apache Beam](https://github.com/apache/beam)
-explained on (TODO polidea blog link) 
+## Getting Started with Snowflake and Apache Beam on Google Dataflow
+All details about this tutorial can be found on Polidea [blogpost](https://www.polidea.com/blog/snowflake-and-apache-beam-on-google-dataflow/)
